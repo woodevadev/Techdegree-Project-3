@@ -197,26 +197,121 @@ $('#payment').on('click',function(event){
 //Selects all the neccessary fields for validation
 const $nameField = $('#name');
 const $emailField = $('#mail');
-const $jobRoleField = $('#title');
-const $otherField = $('#other-title');
-const $designField = $('#design');
-const $colorField = $('#color')
-const $paymentField = $('#payment')
+const $paymentField = $('#payment');
+const $ccField = $('#cc-num');
+const $zipField = $('#zip');
+const $cvvField = $('#cvv');
 
+//Selects all labels to change to red
+const $labelName = $('label[for="name"]');
+const $labelEmail = $('label[for="mail"]');
+const $labelActivities = $('.activities legend');
+const $labelPayment = $('label[for="payment"]');
+const $labelCCnum = $('label[for="cc-num"]');
+const $labelZip = $('label[for="zip"]');
+const $labelCvv = $('label[for="cvv"]');
+
+//Function for showing off which field is 
+//incorrect also alerts based on certain
+//inputs
 function showMissed(indexOfMissed){
-    //This will be code to highlight missed field labels
+    if(indexOfMissed == 0){
+        alert('Invalid name');
+        $labelName.css('color', 'red');
+    }
+    if(indexOfMissed == 1){
+        alert('Invalid email address');
+        $labelEmail.css('color', 'red');
+    }
+    if(indexOfMissed == 2){
+        alert('Please choose atleast one activity')
+        $labelActivities.css('color', 'red');
+    }
+    if(indexOfMissed == 3){
+        alert('Please choose a payment method');
+        $labelPayment.css('color', 'red');
+    }
+    if(indexOfMissed == 4 || indexOfMissed == 5){
+        alert('Invalid credit card number');
+        $labelCCnum.css('color', 'red');
+    }
+    if(indexOfMissed == 6 || indexOfMissed == 7){
+        alert('Invalid zip code');
+        $labelZip.css('color', 'red');
+    }
+    if(indexOfMissed == 8 || indexOfMissed == 9){
+        alert('invalid cvv number');
+        $labelCvv.css('color', 'red');
+    }
 }
 
 let missed = 0;
 
+//Regular expressions for testing inputs
+let emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+let numReg = /^[0-9]+$/;
+
 //This block provides form validation
 $('button').on('click', function(event){
+    //Validates name field
     if($nameField.text() == ''){
         event.preventDefault();
         missed ++;
         showMissed(0);
     }
-    if($emailField.text())
-
-
+    //Validates email field by checking agains
+    //emailReg regular expression
+    if(emailReg.test($($emailField).val()) == false || $($emailField).val() == ''){
+        event.preventDefault();
+        missed ++;
+        showMissed(1);
+    }
+    //Validates that any activities have been checked
+    if (anyChecked() == false){
+        event.preventDefault();
+        missed ++;
+        showMissed(2);
+    }
+    //Validates that select payment method isnt chosen
+    if($($paymentField).val() == 'select_method'){
+        event.preventDefault();
+        missed ++;
+        showMissed(3);
+    }
+    //This block validates all of the credit card information
+    //checking for both length of numbers and that they are 
+    //indeed numbers
+    if($($paymentField).val() == 'credit card'){
+        if(numReg.test($($ccField).val()) == false){
+            event.preventDefault();
+            missed ++;
+            showMissed(4);
+        }else if($($ccField).val().length > 16 || $($ccField).val().length < 13){
+            event.preventDefault();
+            missed ++;
+            showMissed(5);
+        }
+        if(numReg.test($($zipField).val()) == false){
+            event.preventDefault();
+            missed ++;
+            showMissed(6);
+        }else if($($zipField).val().length != 5){
+            event.preventDefault()
+            missed ++;
+            showMissed(7);
+        }
+        if(numReg.test($($cvvField).val()) == false){
+            event.preventDefault();
+            missed ++;
+            showMissed(8);
+        }else if($($zipField).val().length != 3){
+            event.preventDefault();
+            missed ++;
+            showMissed(9);
+        }
+    }
+    //If atleast one field is missing alerts user
+    if(missed > 1){
+        alert('Please complete the sections marked in red');
+    }
 });
