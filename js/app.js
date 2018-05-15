@@ -86,15 +86,14 @@ totalh5.hide();
 //activities are checked.  If not then the total
 //h5 will hide and vise versa
 function anyChecked(){
+    let isTrue = false;
     $($inputSelector).each(function(index){
         if($($inputSelector[index]).is(":checked")){
             console.log('one is checked');
-            return true;
-        }else if($($inputSelector[index]).is(":checked") == false){
-            console.log('none are checked');
-            return false;
+            isTrue = true;
         }
     });
+    return isTrue;
 }
 
 //Initialize total to zero
@@ -135,7 +134,7 @@ $('.activities').on('click', 'input', function(event){
     //This block
     if(anyChecked()){
         totalh5.show();
-        console.log("show");
+        console.log('showing');
     }
 
 });
