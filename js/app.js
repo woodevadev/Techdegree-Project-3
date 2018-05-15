@@ -79,8 +79,8 @@ function disableEnable(index, eOrD){
 //activities fieldset and hides it
 const anh5 = $('<h5></h5>');
 $('.activities').append(anh5);
-let totalh5 = $('.activites h5');
-totalh5.hide();
+let $totalh5 = $('.activites h5');
+$totalh5.hide();
 
 //This function checks to see if any of the
 //activities are checked.  If not then the total
@@ -133,9 +133,20 @@ $('.activities').on('click', 'input', function(event){
     }
     //This block
     if(anyChecked()){
-        totalh5.show();
-        console.log('showing');
+        $totalh5.show();
+        $($inputSelector).each(function(index){
+            if($($inputSelector[index]).is(':checked')){
+                if(index == 1){
+                    total = total + 200;
+                }else{
+                    total = total + 100
+                }
+            }
+        });
+        $($totalh5).text(`<h5>Total: ${total}</h5>`);
+    }else{
+        total = 0;
+        $totalh5.hide();
     }
-
 });
 
