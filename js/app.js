@@ -67,8 +67,8 @@ let $labelSelector = $('.activities label');
 
 function disableEnable(index, eOrD){
     if(eOrD == 'enable'){
-        $($inputSelector[index]).attr('disabled', 'false');
-        $($labelSelector[index]).css('color','');
+        $($inputSelector[index]).removeAttr('disabled');
+        $($labelSelector[index]).css('color','black');
     }else if(eOrD == 'disable'){
         $($inputSelector[index]).attr('disabled', 'true');
         $($labelSelector[index]).css('color', 'gray');
@@ -82,10 +82,10 @@ $('.activities').on('click', 'input', function(event){
     if(boxIndex == 2){;
         if($($inputSelector[1]).is(":checked") == true){
             console.log('checked');
-            disableEnable(3, 'enable');
+            disableEnable(3, 'disable');
         }else if($($inputSelector[1]).is(":checked") == false){
             console.log('unchecked');
-            disableEnable(3, 'disable');
+            disableEnable(3, 'enable');
         }
     } 
 });
