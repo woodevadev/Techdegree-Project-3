@@ -181,9 +181,15 @@ $('#payment').on('click',function(event){
         $divBitcoin.hide();
     }else if($(event.target).val() == 'credit card'){
         $divCreditCard.show();
+        $divPaypal.hide();
+        $divBitcoin.hide();
     }else if($(event.target).val() == 'paypal'){
         $divPaypal.show();
+        $divCreditCard.hide();
+        $divBitcoin.hide();
     }else if($(event.target).val() == 'bitcoin'){
         $divBitcoin.show();
+        $divCreditCard.hide();
+        $divPaypal.hide();
     }
 });
