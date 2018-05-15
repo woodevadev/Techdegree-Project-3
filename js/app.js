@@ -75,18 +75,69 @@ function disableEnable(index, eOrD){
     }
 }
 
+//Appends and h5 tag to the bottom of the 
+//activities fieldset and hides it
+const anh5 = $('<h5></h5>');
+$('.activities').append(anh5);
+let totalh5 = $('.activites h5');
+totalh5.hide();
 
+//This function checks to see if any of the
+//activities are checked.  If not then the total
+//h5 will hide and vise versa
+function anyChecked(){
+    $inputSelector.each(function(index){
+        console.log(index);
+        if($($inputSelector[index]).is(":checked") == true){
+            console.log('one is checked');
+            return true;
+        }else{
+            console.log('none are checked');
+            return false;
+        }
+    });
+}
+
+//Initialize total to zero
+let total = 0;
 
 $('.activities').on('click', 'input', function(event){
+    //This block handles the disabling of same time
+    //events
     let boxIndex = ($(event.target).parent().index());
     if(boxIndex == 2){;
         if($($inputSelector[1]).is(":checked") == true){
-            console.log('checked');
             disableEnable(3, 'disable');
         }else if($($inputSelector[1]).is(":checked") == false){
-            console.log('unchecked');
             disableEnable(3, 'enable');
         }
     } 
+    if(boxIndex == 4){
+        if($($inputSelector[3]).is(":checked") == true){
+            disableEnable(1, 'disable');
+        }else if($($inputSelector[1]).is(":checked") == false){
+            disableEnable(1, 'enable');
+        } 
+    }
+    if(boxIndex == 3){;
+        if($($inputSelector[2]).is(":checked") == true){
+            disableEnable(4, 'disable');
+        }else if($($inputSelector[1]).is(":checked") == false){
+            disableEnable(4, 'enable');
+        }
+    } 
+    if(boxIndex == 5){
+        if($($inputSelector[4]).is(":checked") == true){
+            disableEnable(2, 'disable');
+        }else if($($inputSelector[1]).is(":checked") == false){
+            disableEnable(2, 'enable');
+        } 
+    }
+    //This block
+    if(anyChecked()){
+        totalh5.show();
+        console.log("show");
+    }
+
 });
 
