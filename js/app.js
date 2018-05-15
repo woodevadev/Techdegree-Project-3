@@ -86,12 +86,11 @@ totalh5.hide();
 //activities are checked.  If not then the total
 //h5 will hide and vise versa
 function anyChecked(){
-    $inputSelector.each(function(index){
-        console.log(index);
-        if($($inputSelector[index]).is(":checked") == true){
+    $($inputSelector).each(function(index){
+        if($($inputSelector[index]).is(":checked")){
             console.log('one is checked');
             return true;
-        }else{
+        }else if($($inputSelector[index]).is(":checked") == false){
             console.log('none are checked');
             return false;
         }
