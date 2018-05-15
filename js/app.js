@@ -27,6 +27,8 @@ $('#title').on('click', function(event){
 //Select the options in the color select field
 let $colorOptions = $('#color').children();
 
+//Hides the appropraite colors based on
+//the selection sent to the function
 function hideColors(designSelection){
     $colorOptions.hide();
     if(designSelection == 'js puns'){
@@ -42,6 +44,8 @@ function hideColors(designSelection){
     }
 }
 
+//Handles changing the color options
+//based on design selection
 $('#design').on('click', function(event){
     if($(event.target).val() == 'js puns'){
         hideColors($(event.target).val());
@@ -54,3 +58,35 @@ $('#design').on('click', function(event){
         $('#color').val('please');
     }
 });
+
+//Selects all inputs within activities class
+let $inputSelector = $('.activities label input');
+
+//Selects all labels within activites class
+let $labelSelector = $('.activities label');
+
+function disableEnable(index, eOrD){
+    if(eOrD == 'enable'){
+        $($inputSelector[index]).attr('disabled', 'false');
+        $($labelSelector[index]).css('color','');
+    }else if(eOrD == 'disable'){
+        $($inputSelector[index]).attr('disabled', 'true');
+        $($labelSelector[index]).css('color', 'gray');
+    }
+}
+
+
+
+$('.activities').on('click', 'input', function(event){
+    let boxIndex = ($(event.target).parent().index());
+    if(boxIndex == 2){;
+        if($($inputSelector[1]).is(":checked") == true){
+            console.log('checked');
+            disableEnable(3, 'enable');
+        }else if($($inputSelector[1]).is(":checked") == false){
+            console.log('unchecked');
+            disableEnable(3, 'disable');
+        }
+    } 
+});
+
