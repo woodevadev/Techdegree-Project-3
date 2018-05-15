@@ -193,3 +193,30 @@ $('#payment').on('click',function(event){
         $divPaypal.hide();
     }
 });
+
+//Selects all the neccessary fields for validation
+const $nameField = $('#name');
+const $emailField = $('#mail');
+const $jobRoleField = $('#title');
+const $otherField = $('#other-title');
+const $designField = $('#design');
+const $colorField = $('#color')
+const $paymentField = $('#payment')
+
+function showMissed(indexOfMissed){
+    //This will be code to highlight missed field labels
+}
+
+let missed = 0;
+
+//This block provides form validation
+$('button').on('click', function(event){
+    if($nameField.text() == ''){
+        event.preventDefault();
+        missed ++;
+        showMissed(0);
+    }
+    if($emailField.text())
+
+
+});
