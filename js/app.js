@@ -99,6 +99,7 @@ function anyChecked(){
 //Initialize total to zero
 let total = 0;
 
+//This handles the events on the activities field
 $('.activities').on('click', 'input', function(event){
     //This block handles the disabling of same time
     //events if there is a conflict
@@ -245,6 +246,7 @@ function showMissed(indexOfMissed){
     }
 }
 
+//Initializes missed to 0
 let missed = 0;
 
 //Regular expressions for testing inputs
