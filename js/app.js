@@ -256,7 +256,7 @@ let numReg = /^[0-9]+$/;
 //This block provides form validation
 $('button').on('click', function(event){
     //Validates name field
-    if($nameField.text() == ''){
+    if($nameField.val() == ''){
         event.preventDefault();
         missed ++;
         showMissed(0);
@@ -316,4 +316,6 @@ $('button').on('click', function(event){
     if(missed > 1){
         alert('Please complete the sections marked in red');
     }
+
+    missed = 0;
 });
