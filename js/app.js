@@ -306,7 +306,7 @@ $('button').on('click', function(event){
             event.preventDefault();
             missed ++;
             showMissed(8);
-        }else if($($zipField).val().length != 3){
+        }else if($($cvvField).val().length != 3){
             event.preventDefault();
             missed ++;
             showMissed(9);
