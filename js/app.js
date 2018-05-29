@@ -16,7 +16,7 @@ $(document).ready(function(){
 //This hides or shows the other job role 
 //text field based on what is picked in the
 //select field
-$('#title').on('click', function(event){
+$('#title').on('change', function(event){
     if($(event.target).val() == 'other'){
         $('#other-title').show();
     }else{
@@ -26,6 +26,8 @@ $('#title').on('click', function(event){
 
 //Select the options in the color select field
 let $colorOptions = $('#color').children();
+$colorOptions.hide();
+$($colorOptions[0]).show();
 
 //Hides the appropraite colors based on
 //the selection sent to the function
@@ -46,7 +48,7 @@ function hideColors(designSelection){
 
 //Handles changing the color options
 //based on design selection
-$('#design').on('click', function(event){
+$('#design').on('change', function(event){
     if($(event.target).val() == 'js puns'){
         hideColors($(event.target).val());
         $('#color').val('cornflowerblue');
@@ -175,7 +177,7 @@ $divBitcoin.hide();
 
 //Handles the showing of different payment
 //informations
-$('#payment').on('click',function(event){
+$('#payment').on('change',function(event){
     if($(event.target).val() == 'select_method'){
         $divCreditCard.hide();
         $divPaypal.hide();
